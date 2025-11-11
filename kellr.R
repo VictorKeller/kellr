@@ -405,5 +405,15 @@ prep.rbind <- function(a, b) {
 
 
   
-  
+# convert_to_labels: convert labelled Stata variables to R factors ####
+
+convert_to_labels <- function(x) {
+  if (!is.null(attr(x, "labels"))) {
+    labs <- attr(x, "labels")
+    # Match numeric values to label names
+    return(factor(x, levels = labs, labels = names(labs)))
+  } else {
+    return(x)
+  }
+}
   
